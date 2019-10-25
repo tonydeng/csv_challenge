@@ -1,8 +1,8 @@
-use std::path::PathBuf;
-use std::fs::File;
-use std::io::prelude::*;
-
-use super::Error;
+/**
+ * 作用于core/read.rs
+ * 将在read.rs中引入的std模块都溢出来，使用了Rust 2018新模块系统支持的use语句内嵌语法
+ * */ 
+use super::{Error, PathBuf,File,Read,Write};
 
 pub fn load_csv(csv_file: PathBuf) -> Result<String,Error> {
     let file = read(csv_file)?;
