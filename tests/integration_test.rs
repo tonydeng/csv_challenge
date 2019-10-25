@@ -2,6 +2,7 @@
 
 mod test{
     use std::path::PathBuf;
+    use std::fs;
 
     use csv_challenge::{
         {load_csv,write_csv},
@@ -16,5 +17,7 @@ mod test{
         let output_file = write_csv(&modified_data, "output/test.csv");
 
         assert!(output_file.is_ok());
+
+        fs::remove_file("output/test.csv");
     }
 }
