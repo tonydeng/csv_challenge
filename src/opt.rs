@@ -9,5 +9,5 @@ pub struct Opt {
     #[structopt(help = "Replcaement Column Name")]
     pub replacement:String,
     #[structopt(help ="Output file, stdout if not present")]
-    pub output: Option<String>,
+    pub output: Option<String>, // 使用Option表示可以忽略的参数
 }

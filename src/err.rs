@@ -12,7 +12,7 @@ impl From<io::Error> for Error {
     }
 }
 
-impl From<&'static str> for Errer {
+impl From<&'static str> for Error {
     fn from(e: &'static str) -> Error{
         Error::Program(e)
     }

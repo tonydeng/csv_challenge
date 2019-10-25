@@ -1,8 +1,36 @@
 use structopt::StructOpt;
 mod opt;
 use self::opt::Opt;
+mod err;
+mod core;
+use self::core::read::{load_csv,write_csv};
+
+use std::process;
+use std::path::PathBuf;
 
 fn main() {
     let opt = Opt::from_args();
-    println!("{:?}",opt);
+    // 将opt.input字段中输入的CSV文件路径字符串转换成PathBuf类型
+    let filename = PathBuf::from(opt.input);
+    // 将得到的CSV文件路径filename传入load_csv函数中，使用match来处理load_csv返回的Result类型
+    let csv_data = match load_csv(filename) {
+        Ok(fname) => {fname},
+        Err(e) => {
+            println!("main error: {:?}",e);
+            process::exit(1);
+        },
+    };
+    //声明output变量绑定，代表输出csv文件路径，因为opt.output是可以忽略的参数，所以使用unwrap_or方法来定义默认输出路径
+    let output_file = &opt.output.unwrap_or("output/output.csv".to_string());
+    // 将督导的原始CSV文件内容csv_data和输出路径output_file传入write_csv方法中来输出CSV文件。
+    match write_csv(&csv_data, &output_file) {
+        Ok(_) => {
+            println!("write success!");
+        },
+        Err(e) => {
+            println!("main error: {:?}",e);
+            process::exit(1);
+        },
+    }
+    // println!("{:?}",opt);
 }
