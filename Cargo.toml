@@ -1,5 +1,5 @@
 [package]
-name = "cvs_challenge"
+name = "csv_challenge"
 version = "0.1.0"
 authors = ["Tony Deng <wolf.deng@gmail.com>"]
 edition = "2018"
