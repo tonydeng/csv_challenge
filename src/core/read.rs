@@ -8,7 +8,8 @@ pub fn load_csv(csv_file: PathBuf) -> Result<String,Error> {
     let file = read(csv_file)?;
     Ok(file)
 }
-/// #Usage:
+/// # Usage:
+/// 
 /// ```ignore
 /// let filename = PathBuf::from("./files/challenge.csv");
 /// let csv_data = load_csv(filename).unwrap();
