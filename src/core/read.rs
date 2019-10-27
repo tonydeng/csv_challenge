@@ -8,7 +8,16 @@ pub fn load_csv(csv_file: PathBuf) -> Result<String,Error> {
     let file = read(csv_file)?;
     Ok(file)
 }
-
+/// #Usage:
+/// ```ignore
+/// let filename = PathBuf::from("./files/challenge.csv");
+/// let csv_data = load_csv(filename).unwrap();
+/// let modified_data = replace_column(
+///     csv_data, "City","Beijing".unwap();
+/// )
+/// let output_file = write_csv(&modified_data, "output/test.csv");
+/// assert!(output_file(output_file.is_os()));
+/// ```
 pub fn write_csv(csv_data: &str, filename: &str) -> Result<(),Error> {
     write(csv_data,filename)?;
     Ok(())
